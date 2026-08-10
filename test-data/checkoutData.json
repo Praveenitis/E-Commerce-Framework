@@ -1,0 +1,10 @@
+{
+    "orderComment": "Please deliver the order safely.",
+    "payment": {
+        "nameOnCard": "Praveen Test",
+        "cardNumber": "4111111111111111",
+        "cvc": "123",
+        "expiryMonth": "12",
+        "expiryYear": "2030"
+    }
+}

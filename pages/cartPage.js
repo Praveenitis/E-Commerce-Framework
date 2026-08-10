@@ -7,6 +7,13 @@ class CartPage {
         this.cartTable = page.locator('#cart_info_table');
         this.cartRows = page.locator('#cart_info_table tbody tr');
 
+        this.proceedToCheckoutButton = page.getByText(
+    'Proceed To Checkout',
+    {
+        exact: true
+    }
+);
+
         // Product details
         this.productName = this.cartRows
             .first()
@@ -39,6 +46,11 @@ class CartPage {
             state: 'visible'
         });
     }
+
+    async proceedToCheckout() {
+
+    await this.proceedToCheckoutButton.click();
+}
 
 
     async removeProduct() {

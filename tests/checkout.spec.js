@@ -1,0 +1,101 @@
+const { test, expect } = require('@playwright/test');
+
+const { LoginPage } = require('../pages/loginPage');
+const { ProductPage } = require('../pages/productPage');
+const { CartPage } = require('../pages/cartPage');
+const { CheckoutPage } = require('../pages/checkoutPage');
+
+const loginData = require('../test-data/loginData.json');
+const productData = require('../test-data/productData.json');
+const checkoutData = require('../test-data/checkoutData.json');
+
+
+test.describe('Checkout Functionality', () => {
+
+    let loginPage;
+    let productPage;
+    let cartPage;
+    let checkoutPage;
+
+
+    test.beforeEach(async ({ page }) => {
+
+        loginPage = new LoginPage(page);
+        productPage = new ProductPage(page);
+        cartPage = new CartPage(page);
+        checkoutPage = new CheckoutPage(page);
+
+        // Login
+        await loginPage.navigateToLogin();
+
+        await loginPage.login(
+            loginData.validUser.email,
+            loginData.validUser.password
+        );
+
+        // Navigate to Products
+        await productPage.navigateToProducts();
+
+        // Search product
+        await productPage.searchProduct(
+            productData.searchProduct
+        );
+
+        // Add product directly from search results
+        await productPage.addSearchedProductToCart(
+            productData.searchProduct
+        );
+
+        // Open Cart
+        await productPage.viewCart();
+
+        // Wait for Cart
+        await cartPage.waitForCart();
+
+        // Proceed to Checkout
+        await cartPage.proceedToCheckout();
+
+    });
+
+
+    test('Verify Checkout Page', async () => {
+
+        await checkoutPage.verifyCheckoutPage();
+
+        await expect(checkoutPage.deliveryAddress)
+            .toBeVisible();
+
+        await expect(checkoutPage.billingAddress)
+            .toBeVisible();
+
+        await expect(checkoutPage.orderReview)
+            .toBeVisible();
+
+    });
+
+    test('Complete Order Successfully', async () => {
+
+    // Enter order comment
+    await checkoutPage.enterOrderComment(
+        checkoutData.orderComment
+    );
+
+    // Place order
+    await checkoutPage.placeOrder();
+
+    // Enter payment details
+    await checkoutPage.enterPaymentDetails(
+        checkoutData.payment
+    );
+
+    // Confirm payment
+    await checkoutPage.confirmPayment();
+
+    // Verify order confirmation
+    await expect(checkoutPage.orderSuccessMessage)
+        .toBeVisible();
+
+});
+
+
+});

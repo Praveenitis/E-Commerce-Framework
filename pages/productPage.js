@@ -94,11 +94,9 @@ class ProductPage {
     }
 
 
-    async viewCart() {
-        await this.viewCartLink.click();
-
-        await this.page.waitForURL('**/view_cart');
-    }
+   async viewCart() {
+    await this.viewCartLink.click();
+}
 }
 
 
