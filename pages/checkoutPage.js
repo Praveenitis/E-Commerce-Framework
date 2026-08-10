@@ -83,6 +83,17 @@ class CheckoutPage {
 
         await this.payAndConfirmButton.click();
     }
+
+    async getPaymentFieldRequiredState() {
+
+    return {
+        nameOnCard: await this.nameOnCard.getAttribute('required'),
+        cardNumber: await this.cardNumber.getAttribute('required'),
+        cvc: await this.cvc.getAttribute('required'),
+        expiryMonth: await this.expiryMonth.getAttribute('required'),
+        expiryYear: await this.expiryYear.getAttribute('required')
+    };
+}
 }
 
 

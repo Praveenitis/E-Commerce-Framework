@@ -97,5 +97,25 @@ test.describe('Checkout Functionality', () => {
 
 });
 
+test('Validate Payment Form', async () => {
+
+    await checkoutPage.enterOrderComment(
+        checkoutData.orderComment
+    );
+
+    await checkoutPage.placeOrder();
+
+    // Try to submit payment form without entering details
+    await checkoutPage.confirmPayment();
+
+    // Payment page should remain visible
+    await expect(checkoutPage.nameOnCard)
+        .toBeVisible();
+
+    await expect(checkoutPage.cardNumber)
+        .toBeVisible();
+
+});
+
 
 });
