@@ -3,6 +3,8 @@ const { LoginPage } = require('../pages/loginPage');
 
 const loginData = require('../test-data/loginData.json');
 
+require('dotenv').config();
+
 
 test.describe('Login Functionality', () => {
 
@@ -24,9 +26,9 @@ test.describe('Login Functionality', () => {
     async ({ page }) => {
 
         await loginPage.login(
-            loginData.validUser.email,
-            loginData.validUser.password
-        );
+    process.env.LOGIN_EMAIL,
+    process.env.LOGIN_PASSWORD
+);
 
         await expect(loginPage.loggedInAs).toContainText('Logged in as');
 

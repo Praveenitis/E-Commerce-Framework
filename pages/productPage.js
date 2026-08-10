@@ -38,7 +38,7 @@ class ProductPage {
 
 
     async navigateToProducts() {
-        await this.page.goto('https://automationexercise.com/products', {
+        await this.page.goto('/products', {
             waitUntil: 'domcontentloaded'
         });
 

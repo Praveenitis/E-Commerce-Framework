@@ -27,7 +27,7 @@ class LoginPage {
 
 
     async navigateToLogin() {
-    await this.page.goto('https://automationexercise.com', {
+    await this.page.goto('/', {
         waitUntil: 'domcontentloaded'
     });
 

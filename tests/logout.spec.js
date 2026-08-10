@@ -21,8 +21,8 @@ test.describe('Logout Functionality', () => {
         await loginPage.navigateToLogin();
 
         await loginPage.login(
-            loginData.validUser.email,
-            loginData.validUser.password
+            process.env.LOGIN_EMAIL,
+            process.env.LOGIN_PASSWORD
         );
 
     });
