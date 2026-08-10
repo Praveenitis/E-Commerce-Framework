@@ -27,12 +27,16 @@ class LoginPage {
 
 
     async navigateToLogin() {
-        await this.page.goto('https://automationexercise.com');
+    await this.page.goto('https://automationexercise.com', {
+        waitUntil: 'domcontentloaded'
+    });
 
-        await this.signupLoginLink.click();
+    await this.signupLoginLink.click();
 
-        await this.loginEmail.waitFor();
-    }
+    await this.loginEmail.waitFor({
+        state: 'visible'
+    });
+}
 
 
     async login(email, password) {

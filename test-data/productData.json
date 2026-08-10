@@ -1,4 +1,5 @@
 {
     "searchProduct": "Blue Top",
-    "expectedProductName": "Blue Top"
+    "expectedProductName": "Blue Top",
+     "expectedQuantity": "1"
 }

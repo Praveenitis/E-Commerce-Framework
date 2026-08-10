@@ -4,11 +4,14 @@ class ProductPage {
         this.page = page;
 
         // Navigation
-        this.productsLink = page.getByRole('link', { name: 'Products' });
+        this.productsLink = page.getByRole('link', {
+            name: 'Products',
+            exact: true
+        });
 
         // Products page
-      this.productsTitle = page.getByText('All Products');
-this.searchedProductsTitle = page.getByText('Searched Products');
+        this.productsTitle = page.getByText('All Products');
+        this.searchedProductsTitle = page.getByText('Searched Products');
 
         // Search
         this.searchBox = page.locator('#search_product');
@@ -27,13 +30,34 @@ this.searchedProductsTitle = page.getByText('Searched Products');
         this.addToCartButton = page.getByText('Add to cart').first();
 
         // Cart
-        this.viewCartLink = page.getByRole('link', { name: 'View Cart' });
+        this.viewCartLink = page.getByRole('link', {
+            name: 'View Cart',
+            exact: true
+        });
     }
 
 
     async navigateToProducts() {
-        await this.productsLink.click();
+        await this.page.goto('https://automationexercise.com/products', {
+            waitUntil: 'domcontentloaded'
+        });
+
+        await this.productsTitle.waitFor({
+            state: 'visible'
+        });
     }
+
+    async addSearchedProductToCart(productName) {
+
+    const productCard = this.page
+        .locator('.productinfo')
+        .filter({ hasText: productName })
+        .first();
+
+    await productCard
+        .getByText('Add to cart')
+        .click();
+}
 
 
     async searchProduct(productName) {
@@ -41,14 +65,28 @@ this.searchedProductsTitle = page.getByText('Searched Products');
         await this.searchButton.click();
     }
 
+    async addSearchedProductToCart(productName) {
 
-    async selectFirstProduct() {
-    await this.page
-        .locator('.choose')
-        .first()
-        .getByRole('link', { name: 'View Product' })
+    const productCard = this.page
+        .locator('.productinfo')
+        .filter({ hasText: productName })
+        .first();
+
+    await productCard
+        .getByText('Add to cart')
         .click();
 }
+
+
+    async selectFirstProduct() {
+        await this.page
+            .getByRole('link', {
+                name: 'View Product',
+                exact: true
+            })
+            .first()
+            .click();
+    }
 
 
     async addProductToCart() {
@@ -58,6 +96,8 @@ this.searchedProductsTitle = page.getByText('Searched Products');
 
     async viewCart() {
         await this.viewCartLink.click();
+
+        await this.page.waitForURL('**/view_cart');
     }
 }
 
