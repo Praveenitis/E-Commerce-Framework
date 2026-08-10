@@ -28,7 +28,10 @@ test.describe('Logout Functionality', () => {
     });
 
 
-    test('Verify Logout Functionality', async ({ page }) => {
+    test(
+    'Verify Logout Functionality',
+    { tag: ['@smoke', '@regression'] },
+    async ({ page }) => {
 
         // Verify Logout link is visible
         await expect(logoutPage.logoutLink)

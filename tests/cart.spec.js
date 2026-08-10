@@ -52,7 +52,10 @@ test.describe('Cart Functionality', () => {
 });
 
 
-    test('Verify Cart Product Details', async () => {
+   test(
+    'Verify Cart Product Details',
+    { tag: ['@smoke', '@regression'] },
+    async () => {
 
         await expect(cartPage.productName)
             .toHaveText(productData.expectedProductName);
@@ -68,7 +71,10 @@ test.describe('Cart Functionality', () => {
     });
 
 
-    test('Verify Cart Page', async () => {
+    test(
+    'Verify Cart Page',
+    { tag: '@smoke' },
+    async () => {
 
         await expect(cartPage.cartTable)
             .toBeVisible();
@@ -76,7 +82,10 @@ test.describe('Cart Functionality', () => {
     });
 
 
-    test('Remove Product from Cart', async () => {
+    test(
+    'Remove Product from Cart',
+    { tag: '@regression' },
+    async () => {
 
         await cartPage.removeProduct();
 

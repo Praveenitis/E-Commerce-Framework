@@ -61,9 +61,13 @@ class ProductPage {
 
 
     async searchProduct(productName) {
-        await this.searchBox.fill(productName);
-        await this.searchButton.click();
-    }
+    await this.searchBox.fill(productName);
+    await this.searchButton.click();
+
+    await this.searchedProductsTitle.waitFor({
+        state: 'visible'
+    });
+}
 
     async addSearchedProductToCart(productName) {
 
@@ -78,15 +82,14 @@ class ProductPage {
 }
 
 
-    async selectFirstProduct() {
-        await this.page
-            .getByRole('link', {
-                name: 'View Product',
-                exact: true
-            })
-            .first()
-            .click();
-    }
+   async selectFirstProduct() {
+
+    const viewProductLink = this.page.locator(
+        'a[href*="/product_details/"]'
+    ).first();
+
+    await viewProductLink.click();
+}
 
 
     async addProductToCart() {

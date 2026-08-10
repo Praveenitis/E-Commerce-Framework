@@ -18,7 +18,10 @@ test.describe('Login Functionality', () => {
     });
 
 
-    test('Valid Login', async ({ page }) => {
+    test(
+    'Valid Login',
+    { tag: ['@smoke', '@regression'] },
+    async ({ page }) => {
 
         await loginPage.login(
             loginData.validUser.email,
@@ -30,7 +33,10 @@ test.describe('Login Functionality', () => {
     });
 
 
-    test('Invalid Login', async ({ page }) => {
+    test(
+    'Invalid Login',
+    { tag: ['@negative', '@regression'] },
+    async ({ page }) => {
 
         await loginPage.login(
             loginData.invalidUser.email,

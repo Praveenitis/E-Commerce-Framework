@@ -31,7 +31,7 @@ test.describe('Product Functionality', () => {
     });
 
 
-    test('Verify Products Page', async () => {
+    test('Verify Products Page',{ tag: '@regression' }, async () => {
 
         await expect(productPage.productsTitle)
             .toBeVisible();
@@ -39,7 +39,8 @@ test.describe('Product Functionality', () => {
     });
 
 
-    test('Search Product', async () => {
+    // Critical product flow
+test('Product Search', { tag: ['@smoke', '@regression'] }, async ({ page }) => {
 
         await productPage.searchProduct(
             productData.searchProduct
@@ -54,7 +55,7 @@ test.describe('Product Functionality', () => {
     });
 
 
-    test('Select Product and Verify Details', async () => {
+    test('Product Selection', { tag: '@regression' }, async ({ page }) => {
 
         await productPage.searchProduct(
             productData.searchProduct
@@ -71,7 +72,7 @@ test.describe('Product Functionality', () => {
     });
 
 
-    test('Add Product to Cart', async () => {
+    test('Add Product to Cart',{ tag: '@regression' }, async () => {
 
         await productPage.searchProduct(
             productData.searchProduct

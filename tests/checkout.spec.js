@@ -58,7 +58,10 @@ test.describe('Checkout Functionality', () => {
     });
 
 
-    test('Verify Checkout Page', async () => {
+   test(
+    'Verify Checkout Page',
+    { tag: ['@smoke', '@regression'] },
+    async () => {
 
         await checkoutPage.verifyCheckoutPage();
 
@@ -72,8 +75,10 @@ test.describe('Checkout Functionality', () => {
             .toBeVisible();
 
     });
-
-    test('Complete Order Successfully', async () => {
+test(
+    'Complete Order Successfully',
+    { tag: ['@smoke', '@regression'] },
+    async () => {
 
     // Enter order comment
     await checkoutPage.enterOrderComment(
@@ -97,7 +102,10 @@ test.describe('Checkout Functionality', () => {
 
 });
 
-test('Validate Payment Form', async () => {
+test(
+    'Validate Payment Form',
+    { tag: ['@negative', '@regression'] },
+    async () => {
 
     await checkoutPage.enterOrderComment(
         checkoutData.orderComment
