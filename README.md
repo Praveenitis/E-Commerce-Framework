@@ -77,7 +77,7 @@ E-Commerce-Framework/
 ├── package-lock.json
 ├── playwright.config.js
 └── README.md
-```text
+```
 
 🧪 Test Coverage
 
@@ -121,6 +121,8 @@ Verify login form after logout
 
 
 
+
+
 🧩 Page Object Model
 
 Each application page is represented by a dedicated Page Object.
@@ -145,7 +147,7 @@ checkoutPage.js
 LogoutPage
     ↓
 logoutPage.js
-```text
+```
 
 
 Example : 
@@ -163,7 +165,7 @@ await loginPage.login(
     process.env.LOGIN_EMAIL,
     process.env.LOGIN_PASSWORD
 );
-```text
+```
 
 This improves:
 
@@ -176,13 +178,13 @@ Scalability
 📊 Data-Driven Testing
 
 Test data is separated from test logic using JSON files.
-```text
+```json
 {
     "searchProduct": "Blue Top",
     "expectedProductName": "Blue Top",
     "expectedQuantity": "1"
 }
-```text
+```
 
 🏷️ Test Tags
 
@@ -191,39 +193,39 @@ Tests are categorized using Playwright tags.
 Smoke Tests
 
 Critical business flows:
-```
+```bash
 npx playwright test --grep @smoke
 ```
 Regression Tests
 Complete functional validation:
-```
+```bash
 npx playwright test --grep @regression
 ```
 Negative Tests
 Invalid and error scenarios:
-```
+```bash
 npx playwright test --grep @negative
 ```
 
 ▶️ Getting Started : 
 
 1. Clone the Repository
-```
+```bash
 git clone <repository-url>
 ```
 
 2. Navigate to the Project
-```
+```bash
 cd E-Commerce-Framework
 ```
 
 3. Install Dependencies
-```
+```bash
 npm install
 ```
 
 4. Install Playwright Browsers
-```
+```bash
 npx playwright install
 ```
 
@@ -234,7 +236,7 @@ npx playwright install
 Sensitive credentials are managed using environment variables.
 
 Create a .env file in the project root:
-```
+```javascript
 
 BASE_URL=https://automationexercise.com
 LOGIN_EMAIL=your_email
@@ -254,13 +256,13 @@ LOGIN_PASSWORD	Valid test account password
 
 
 🧪 Running Tests
-```
+```bash
 Run All Tests
 npx playwright test
 ```
 
 Run a Specific Module
-```
+```bash
 npx playwright test tests/login.spec.js
 npx playwright test tests/product.spec.js
 npx playwright test tests/cart.spec.js
@@ -269,17 +271,17 @@ npx playwright test tests/logout.spec.js
 ```
 
 Run Tests in Headed Mode
-```
+```bash
 npx playwright test --headed
 ```
 
 Run a Specific Test
-```
+```bash
 npx playwright test -g "Valid Login"
 ```
 
 Run with a Single Worker
-```
+```bash
 npx playwright test --workers=1
 ```
 
@@ -339,7 +341,7 @@ Tests are automatically executed when changes are pushed to the main branch.
 
 CI Pipeline: 
 
-```
+```text
 Developer Push
       ↓
 GitHub Repository
@@ -367,7 +369,7 @@ CI Result
 GitHub Secrets:
 
 Sensitive credentials are stored using GitHub Repository Secrets:
-```
+```javascript
 
 BASE_URL
 LOGIN_EMAIL
@@ -380,7 +382,7 @@ Credentials are not stored directly in the repository.
 📁 Test Execution Strategy : 
 
 The framework supports multiple execution strategies.
-```
+```text
 Smoke
   ↓
 Critical business functionality
@@ -402,13 +404,13 @@ This allows fast validation during development while maintaining broader regress
 The project uses Git for version control.
 
 Main development branch:
-```
+```bash
 main
 ```
 Meaningful commit messages are used for project changes.
 
 Example:
-```
+```bash
 git add .
 git commit -m "Add checkout automation"
 git push origin main
@@ -480,6 +482,6 @@ Reporting
 Failure debugging
 Continuous Integration
 
-
+```bash
 Repository URL : https://github.com/Praveenitis/E-Commerce-Framework.git
-
+```
